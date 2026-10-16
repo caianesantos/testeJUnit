@@ -3,6 +3,7 @@ package com.aplicacao.junit;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculadoraTest {
 
@@ -18,10 +19,17 @@ public class CalculadoraTest {
     }
     @Test
     void multiplicar(){
-        assertEquals(2, calculadora.multiplicar(5, 3));
+        assertEquals(15, calculadora.multiplicar(5, 3));
     }
     @Test
     void dividir(){
-        assertEquals(2, calculadora.dividir(5, 3));
+        assertEquals(5, calculadora.dividir(10, 2));
+    }
+    @Test
+    void naoDevePermitirDivisaoPorZero(){
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> calculadora.dividir(10, 0)
+        );
     }
 }
